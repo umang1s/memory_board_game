@@ -11,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import models.BoardSize
 import kotlin.math.min
 
-class RecyclerViewBoardAdapter(private val context: Context, private val boardSize: BoardSize) : RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder>() {
+class RecyclerViewBoardAdapter(
+    private val context: Context,
+    private val boardSize: BoardSize,
+    private val cardImages: List<Int>
+) : RecyclerView.Adapter<RecyclerViewBoardAdapter.ViewHolder>() {
 
     companion object{
         private const val MARGIN_SIZE=10
@@ -44,7 +48,9 @@ class RecyclerViewBoardAdapter(private val context: Context, private val boardSi
         private val imageButton= itemView.findViewById<ImageButton>(R.id.btn_card)
 
         fun bind(position: Int){
+            imageButton.setImageResource(cardImages[position])
             imageButton.setOnClickListener{
+
                 Log.i("$TAG","clicked on position $position")
             }
         }

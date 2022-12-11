@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import models.BoardSize
+import utils.DEFAULT_ICONS
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerViewBoard:RecyclerView
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         pairsTextView =findViewById(R.id.txt_pairs)
         moveTextView=findViewById(R.id.txt_moves)
 
-        recyclerViewBoard.adapter= RecyclerViewBoardAdapter(this,boardSize)
+        val images= DEFAULT_ICONS.shuffled().take(boardSize.getNumPairs())
+        val randomizedImages=(images +images).shuffled()
+
+        recyclerViewBoard.adapter= RecyclerViewBoardAdapter(this,boardSize,randomizedImages)
         recyclerViewBoard.setHasFixedSize(true)
         recyclerViewBoard.layoutManager=GridLayoutManager(this,boardSize.getWidth())
 
