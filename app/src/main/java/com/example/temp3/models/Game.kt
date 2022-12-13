@@ -18,10 +18,10 @@ class Game(private val boardSize: BoardSize) {
                 //do nothings
             }else{
                 requiredUpdate=true
-                moves++
                 if(prevFlipped==-1){
                     card.isFaceUp=true
                     prevFlipped=position
+                    moves++
                 }else{
                     if(cards[prevFlipped].identifier==card.identifier && prevPrevFlipped==-1){
                         cards[prevFlipped].isMatched=true
@@ -36,6 +36,7 @@ class Game(private val boardSize: BoardSize) {
                             cards[prevPrevFlipped].isFaceUp=false
                             cards[prevFlipped].isFaceUp=false
                             prevPrevFlipped=-1
+                            moves++
                         }
                         card.isFaceUp=true
                         prevFlipped=position
@@ -51,5 +52,4 @@ class Game(private val boardSize: BoardSize) {
         val randomizedImages=(images +images).shuffled()
         cards=randomizedImages.map{ MemoryCard(it) }
     }
-
 }
